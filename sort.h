@@ -8,6 +8,8 @@ template <class T>
     static void MergeData(T *a,T *p,int start,int mid,int end);
 template <class T>
     static void AdjustHeap(T *a,int size,int element);
+template <typename T>
+    static void swap(T &a,T &b);
 public:
 template <class T>
     static void PrintData(T arr[],int len);
@@ -26,6 +28,14 @@ template <class T>
 template <class T>
     static void QuickSort(T a[],int left,int right);
 };
+
+template <typename T>
+void Sort::swap(T &a,T &b)
+{
+    a^=b;
+    b^=a;
+    a^=b;
+}
 template <class T>
 void Sort::MergeData(T *a,T *p,int start,int mid,int end)
 {
@@ -49,23 +59,18 @@ void Sort::AdjustHeap(T *a,int size,int element)
 {
     int lchild = element*2  + 1;//左节点位置
     int rchild = element*2  + 2;//右节点位置
-    int tmp = 0;
     while(rchild < size)//在数组范伟内
     {
         if(a[lchild] <= a[element] && a[rchild] <= a[element])
             return ;
         else if(a[lchild] >= a[rchild])//左边最大
         {
-            tmp = a[element];
-            a[element] = a[lchild];
-            a[lchild] = tmp;
+            swap(a[element],a[lchild]);
             element = lchild;
         }
         else //右边最大
         {
-            tmp = a[element];
-            a[element] = a[rchild];
-            a[rchild] = tmp;
+            swap(a[element],a[lchild]);
             element=rchild;
         }
         lchild=element*2+1;
@@ -73,9 +78,7 @@ void Sort::AdjustHeap(T *a,int size,int element)
     }
     if(lchild < size && a[lchild] > a[element])
     {
-        tmp = a[element];
-        a[element] = a[lchild];
-        a[lchild] = tmp;
+        swap(a[element],a[lchild]);
     }
 }
 template <class T>
@@ -119,9 +122,7 @@ void Sort::SelectSort(T *a,int len)
         }
         if(min != i)
         {
-            int tmp = a[i];
-            a[i] = a[min];
-            a[min] = tmp;
+            swap(a[i],a[min]);
         }
     }
 }
@@ -154,9 +155,7 @@ void Sort::BubbleSort(T a[],int len)
         {
            if(a[j] < a[j + 1])
            {
-               int tmp = a[j];
-               a[j] = a[j + 1];
-               a[j + 1] = tmp;
+               swap(a[j],a[j+1]);
            }
         }
     }

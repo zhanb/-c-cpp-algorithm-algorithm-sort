@@ -11,8 +11,8 @@ int main()
     //Sort::MergeSort(a,p,0,sizeof(a)/sizeof(a[0]));
     //Sort::ShellSort(a,sizeof(a)/sizeof(a[0]));
     //Sort::HeapSort(a,sizeof(a)/sizeof(a[0]));
-    //Sort::SelectSort(a,sizeof(a)/sizeof(a[0]));
-    Sort::QuickSort(a,0,sizeof(a)/sizeof(a[0]));
+    Sort::SelectSort(a,sizeof(a)/sizeof(a[0]));
+//    Sort::QuickSort(a,0,sizeof(a)/sizeof(a[0]));
     cout<<"after sort"<<endl;
     Sort::PrintData(a,sizeof(a)/sizeof(a[0]));
     if(p != NULL)
